@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- [Previous head content remains exactly the same] -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVK Bank - Create Account</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
-   :root {
+    :root {
       --primary-color: #003366;
       --secondary-color: #0056b3;
       --accent-color: #ffcc00;
@@ -286,6 +289,14 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
+    /* Error Message Styles */
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      display: none;
+    }
+    
     /* Responsive Design */
     @media (max-width: 768px) {
       .header-container {
@@ -318,16 +329,10 @@
         background-attachment: fixed;
       }
     }
-    .error-message {
-      color: var(--error-color);
-      font-size: 0.8rem;
-      margin-top: 0.3rem;
-      display: none;
-    }
   </style>
 </head>
 <body>
-   <header>
+  <header>
     <div class="header-container">
       <div class="logo" onclick="location.href='index.html'">
         <h1>GVK<span>Bank</span></h1>
@@ -347,50 +352,56 @@
   <main>
     <div class="registration-container">
       <h2>Create Customer Account</h2>
-  
-  <form id="accountForm">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="ssnId">SSN ID</label>
-        <input type="text" id="ssnId" maxlength="7" required placeholder="Enter 7-digit SSN">
-        <div class="error-message" id="ssnIdError"></div>
-      </div>
-      <div class="form-group">
-        <label for="customerName">Customer Name</label>
-        <input type="text" id="customerName" required>
-        <div class="error-message" id="customerNameError"></div>
-      </div>
-    </div>
-     <div class="form-row">
+      <form id="accountForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ssnId">SSN ID</label>
+            <input type="text" id="ssnId" maxlength="7" required placeholder="Enter 7-digit SSN">
+            <div class="error-message" id="ssnIdError"></div>
+          </div>
+          <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" id="customerName" required>
+            <div class="error-message" id="customerNameError"></div>
+          </div>
+        </div>
+        
+        <div class="form-row">
           <div class="form-group">
             <label for="accountNumber">Account Number</label>
-            <input type="text" id="accountNumber" required>
+            <input type="text" id="accountNumber" required placeholder="9-18 digits">
+            <div class="error-message" id="accountNumberError"></div>
           </div>
           <div class="form-group">
             <label for="ifscCode">IFSC Code</label>
-            <input type="text" id="ifscCode" required>
+            <input type="text" id="ifscCode" required placeholder="e.g. ABCD0123456">
+            <div class="error-message" id="ifscCodeError"></div>
           </div>
         </div>
         
         <div class="form-row">
           <div class="form-group">
             <label for="accountBalance">Account Balance (₹)</label>
-            <input type="number" id="accountBalance" required>
+            <input type="number" id="accountBalance" min="0" step="1" required>
+            <div class="error-message" id="accountBalanceError"></div>
           </div>
           <div class="form-group">
             <label for="aadharNumber">Aadhar Card Number</label>
-            <input type="text" id="aadharNumber" maxlength="12" required>
+            <input type="text" id="aadharNumber" maxlength="12" required placeholder="12 digits">
+            <div class="error-message" id="aadharNumberError"></div>
           </div>
         </div>
         
         <div class="form-row">
           <div class="form-group">
             <label for="panNumber">PAN Card Number</label>
-            <input type="text" id="panNumber" maxlength="10" required>
+            <input type="text" id="panNumber" maxlength="10" required placeholder="e.g. ABCDE1234F">
+            <div class="error-message" id="panNumberError"></div>
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" required>
+            <div class="error-message" id="dobError"></div>
           </div>
         </div>
         
@@ -403,6 +414,7 @@
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </select>
+            <div class="error-message" id="genderError"></div>
           </div>
           <div class="form-group">
             <label for="maritalStatus">Marital Status</label>
@@ -413,186 +425,166 @@
               <option value="Divorced">Divorced</option>
               <option value="Widowed">Widowed</option>
             </select>
+            <div class="error-message" id="maritalStatusError"></div>
           </div>
         </div>
         
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" required>
+          <div class="error-message" id="emailError"></div>
         </div>
         
         <div class="form-group">
           <label for="address">Address</label>
           <textarea id="address" required></textarea>
+          <div class="error-message" id="addressError"></div>
         </div>
         
         <div class="form-group">
           <label for="contactNumber">Contact Number</label>
-          <input type="tel" id="contactNumber" maxlength="10" required>
+          <input type="tel" id="contactNumber" maxlength="10" required placeholder="10 digits, no 0 prefix">
+          <div class="error-message" id="contactNumberError"></div>
         </div>
         
         <button type="submit" class="btn">Create Account</button>
-    
-    <!-- [Rest of the form fields remain the same, but add error message divs after each input] -->
-    
-  </form>
-
-  <!-- [Rest of the HTML remains the same] -->
-    </form>
+      </form>
     </div>
   </main>
   
   <!-- Success Message Box -->
   <div class="success-box" id="successBox">
     <i class="fas fa-check-circle"></i>
-    <span>Customer Registration Successful.</span>
+    <span>Account Created Successfully!</span>
   </div>
   
   <footer>
     <div class="footer-container">
       <div class="footer-bottom">
-        <p>&copy; 2025 GVK Bank. All rights reserved. | Phone: (123) 456-7890</p>
+        <p>&copy; 2025 GVK Bank. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Check if user is logged in
+      // Check authentication
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      const currentUser = JSON.parse(localStorage.getItem('loggedInCustomer') || '{}');
+      const customer = JSON.parse(localStorage.getItem('loggedInCustomer') || {});
       
-      if (!isLoggedIn || !currentUser.customerId) {
+      if (!isLoggedIn || !customer.customerId) {
         window.location.href = 'login.html';
         return;
       }
-      
-      // Display user info in header
-      const userName = document.getElementById('userName');
-      const userId = document.getElementById('userId');
-      
-      userName.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
-      userId.textContent = `CUST ID: ${currentUser.customerId}`;
-      
-      // Logout functionality
-      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+
+      // Display user info
+      document.getElementById('userName').textContent = `${customer.firstName} ${customer.lastName}`;
+      document.getElementById('userId').textContent = `ID: ${customer.customerId}`;
+
+      // Logout handler
+      document.getElementById('logoutBtn').addEventListener('click', (e) => {
         e.preventDefault();
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('loggedInCustomer');
         window.location.href = 'login.html';
       });
-      
-      // Form elements
-      const accountForm = document.getElementById('accountForm');
-      const successBox = document.getElementById('successBox');
-      
+
       // Validation functions
+      function showError(inputId, message) {
+        const errorElement = document.getElementById(inputId + 'Error');
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        return false;
+      }
+      
+      function clearError(inputId) {
+        const errorElement = document.getElementById(inputId + 'Error');
+        errorElement.style.display = 'none';
+        return true;
+      }
+      
+      // Field validations
       function validateSsnId() {
-        const ssnId = document.getElementById('ssnId').value.trim();
-        const errorElement = document.getElementById('ssnIdError');
-        
-        if (!ssnId) {
-          errorElement.textContent = 'SSN ID is required';
-          errorElement.style.display = 'block';
-          return false;
-        }
-        
-        if (!/^\d{7}$/.test(ssnId)) {
-          errorElement.textContent = 'SSN ID must be exactly 7 digits';
-          errorElement.style.display = 'block';
-          return false;
-        }
-        
-        // Check if SSN matches logged in user
-        if (ssnId !== currentUser.ssnId) {
-          errorElement.textContent = 'SSN ID does not match your account';
-          errorElement.style.display = 'block';
-          return false;
-        }
-        
-        errorElement.style.display = 'none';
-        return true;
+        const value = document.getElementById('ssnId').value.trim();
+        if (!value) return showError('ssnId', 'SSN ID is required');
+        if (!/^\d{7}$/.test(value)) return showError('ssnId', 'Must be 7 digits');
+        if (value !== customer.ssnId) return showError('ssnId', 'Does not match your SSN');
+        return clearError('ssnId');
       }
       
-      function validateCustomerName() {
-        const name = document.getElementById('customerName').value.trim();
-        const errorElement = document.getElementById('customerNameError');
-        
-        if (!name) {
-          errorElement.textContent = 'Customer name is required';
-          errorElement.style.display = 'block';
-          return false;
-        }
-        
-        if (!/^[a-zA-Z ]{2,50}$/.test(name)) {
-          errorElement.textContent = 'Name must be 2-50 alphabetic characters';
-          errorElement.style.display = 'block';
-          return false;
-        }
-        
-        errorElement.style.display = 'none';
-        return true;
+      function validateAccountNumber() {
+        const value = document.getElementById('accountNumber').value.trim();
+        if (!value) return showError('accountNumber', 'Account number is required');
+        if (!/^\d{9,18}$/.test(value)) return showError('accountNumber', 'Must be 9-18 digits');
+        return clearError('accountNumber');
       }
       
-      // [Add similar validation functions for all other fields]
+      function validateIfscCode() {
+        const value = document.getElementById('ifscCode').value.trim().toUpperCase();
+        if (!value) return showError('ifscCode', 'IFSC code is required');
+        if (!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(value)) return showError('ifscCode', 'Invalid format (e.g. ABCD0123456)');
+        return clearError('ifscCode');
+      }
       
-      // Auto-populate customer data when SSN is entered
+      function validateAadharNumber() {
+        const value = document.getElementById('aadharNumber').value.trim();
+        if (!value) return showError('aadharNumber', 'Aadhar number is required');
+        if (!/^\d{12}$/.test(value)) return showError('aadharNumber', 'Must be 12 digits');
+        return clearError('aadharNumber');
+      }
+      
+      function validatePanNumber() {
+        const value = document.getElementById('panNumber').value.trim().toUpperCase();
+        if (!value) return showError('panNumber', 'PAN number is required');
+        if (!/^[A-Z]{5}\d{4}[A-Z]{1}$/.test(value)) return showError('panNumber', 'Invalid format (e.g. ABCDE1234F)');
+        return clearError('panNumber');
+      }
+      
+      // Auto-populate customer data when SSN is validated
       document.getElementById('ssnId').addEventListener('blur', function() {
         if (validateSsnId()) {
-          // Populate customer data from logged in user
-          document.getElementById('customerName').value = `${currentUser.firstName} ${currentUser.lastName}`;
-          document.getElementById('email').value = currentUser.email;
-          document.getElementById('address').value = currentUser.address;
-          document.getElementById('contactNumber').value = currentUser.contactNumber;
+          document.getElementById('customerName').value = `${customer.firstName} ${customer.lastName}`;
+          document.getElementById('email').value = customer.email;
+          document.getElementById('address').value = customer.address;
+          document.getElementById('contactNumber').value = customer.contactNumber;
         }
       });
       
       // Form submission
-      accountForm.addEventListener('submit', function(e) {
+      document.getElementById('accountForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Validate all fields
-        const isSsnValid = validateSsnId();
-        const isNameValid = validateCustomerName();
-        // [Add validation for all other fields]
+        const validations = [
+          validateSsnId(),
+          validateAccountNumber(),
+          validateIfscCode(),
+          validateAadharNumber(),
+          validatePanNumber()
+        ];
         
-        if (!isSsnValid || !isNameValid /* || other validations */) {
-          return;
+        if (validations.every(v => v)) {
+          // Get form data
+          const accountData = {
+            customerId: customer.customerId,
+            ssnId: document.getElementById('ssnId').value.trim(),
+            accountNumber: document.getElementById('accountNumber').value.trim(),
+            ifscCode: document.getElementById('ifscCode').value.trim().toUpperCase(),
+            balance: parseFloat(document.getElementById('accountBalance').value),
+            aadharNumber: document.getElementById('aadharNumber').value.trim(),
+            panNumber: document.getElementById('panNumber').value.trim().toUpperCase(),
+            createdAt: new Date().toISOString()
+          };
+          
+          // Save to localStorage
+          localStorage.setItem('customerAccount', JSON.stringify(accountData));
+          
+          // Show success message
+          document.getElementById('successBox').style.display = 'flex';
+          setTimeout(() => {
+            window.location.href = 'home.html';
+          }, 2000);
         }
-        
-        // Get form values
-        const accountDetails = {
-          ssnId: document.getElementById('ssnId').value.trim(),
-          customerName: document.getElementById('customerName').value.trim(),
-          accountNumber: document.getElementById('accountNumber').value.trim(),
-          ifscCode: document.getElementById('ifscCode').value.trim(),
-          accountBalance: parseFloat(document.getElementById('accountBalance').value),
-          aadharNumber: document.getElementById('aadharNumber').value.trim(),
-          panNumber: document.getElementById('panNumber').value.trim(),
-          dob: document.getElementById('dob').value,
-          gender: document.getElementById('gender').value,
-          maritalStatus: document.getElementById('maritalStatus').value,
-          email: document.getElementById('email').value.trim(),
-          address: document.getElementById('address').value.trim(),
-          contactNumber: document.getElementById('contactNumber').value.trim(),
-          createdAt: new Date().toISOString(),
-          createdBy: `CUST-${currentUser.customerId}`
-        };
-        
-        // Store in localStorage (single account per customer)
-        localStorage.setItem('customerAccount', JSON.stringify(accountDetails));
-        
-        // Show success message
-        successBox.style.display = 'flex';
-        
-        // Hide after 3 seconds and redirect
-        setTimeout(() => {
-          successBox.style.display = 'none';
-          window.location.href = 'home.html'; // or wherever you want to redirect
-        }, 3000);
-        
-        // Reset form
-        accountForm.reset();
       });
     });
   </script>
