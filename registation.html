@@ -542,9 +542,9 @@ return /^[1-9]\d{6}$/.test(ssn) ? clearError('ssnId') : showError('ssnId', 'Ente
     const existingCustomer = JSON.parse(localStorage.getItem('customer'));
 
     // Check if user already exists
-    if (existingCustomer) {
-      return showError('ssnId', 'A user is already registered');
-    }
+   // if (existingCustomer) {
+      //return showError('ssnId', 'A user is already registered');
+   // } 
 
     // Generate customer ID - simplified since we only have one user
     const customerId = 'CUST00001';
